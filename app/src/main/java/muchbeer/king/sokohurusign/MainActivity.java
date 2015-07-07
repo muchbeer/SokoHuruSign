@@ -159,7 +159,8 @@ public class MainActivity extends FragmentActivity implements
         if (!mGoogleApiClient.isConnecting()) {
             switch (view.getId()) {
                 case R.id.sign_in_button:
-                    mStatus.setText("Signing In");
+                    mStatus.setVisibility(View.VISIBLE);
+                    mStatus.setText("Signing In....");
                     resolveSignInError();
                     break;
                 case R.id.sign_out_button:
