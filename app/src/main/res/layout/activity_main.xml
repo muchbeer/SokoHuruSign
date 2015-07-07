@@ -6,33 +6,40 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:enabled="false" />
 
     <Button
         android:id="@+id/sign_out_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sign Out"
-        android:enabled="true" />
+        android:enabled="true"
+        android:padding="4dp"
+        android:layout_marginBottom="7dp"
+        android:background="#2196F3"/>
 
     <Button
         android:id="@+id/revoke_access_button"
-        android:layout_width="wrap_content"
+        android:padding="4dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Revoke Access"
+        android:background="#2196F3"
         android:enabled="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/statuslabel"
-        android:text="Status"/>
+        android:text="Status"
+        android:visibility="gone"/>
 
 
 </LinearLayout>

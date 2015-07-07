@@ -27,9 +27,10 @@ public class AddNewItem extends ActionBarActivity{
       name = preferences.getString(SHARED_KEY, "");
         if(!name.equalsIgnoreCase(""))
         {
-            name = "User: " + name;  /* Edit the value here*/
+           name = "Welcome: " + name;  /* Edit the value here*/
         }
+        userName.setText(name);
 
-        userName.setText("Welcome: " + name);
+
     }
 }
