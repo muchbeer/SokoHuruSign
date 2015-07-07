@@ -3,6 +3,8 @@ package muchbeer.king.sokohurusign;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -39,6 +41,11 @@ public class MainActivity extends FragmentActivity implements
     private Button mSignOutButton;
     private Button mRevokeButton;
     private TextView mStatus;
+
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+    private String SHARED_KEY = "Name";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +64,10 @@ public class MainActivity extends FragmentActivity implements
 
         // Build a GoogleApiClient
         mGoogleApiClient = buildGoogleApiClient();
+
+        //Save value
+       preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
     }
 
 
@@ -109,14 +120,24 @@ public class MainActivity extends FragmentActivity implements
         mSignOutButton.setEnabled(true);
         mRevokeButton.setEnabled(true);
 
+
+        //set the shared preferences
+        editor = preferences.edit();
+
         // Indicate that the sign in process is complete.
         mSignInProgress = SIGNED_IN;
 
         try {
             String emailAddress = Plus.AccountApi.getAccountName(mGoogleApiClient);
+
+            editor.putString(SHARED_KEY, emailAddress);
+            editor.apply();
             //mStatus.setText(String.format("Signed In to My App as %s", emailAddress));
             Toast.makeText(getApplicationContext(),"Signed as: " + emailAddress, Toast.LENGTH_LONG).show();
+
+
             Intent connectsuccessful = new Intent(this, AddNewItem.class);
+            startActivity(connectsuccessful);
         }
         catch(Exception ex){
             String exception = ex.getLocalizedMessage();
